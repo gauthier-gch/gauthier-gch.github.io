@@ -1,0 +1,246 @@
+.container {
+  max-width: 400px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  padding-bottom: 200px; /* espace pour voir les équipes */
+}
+
+body {
+  text-align: center;
+  background-color: #f0f8ff;
+}
+
+h1 {
+  display: inline-block;
+  background-color: #a3d5ff;
+  border: 2px solid #7bbfff;
+  border-radius: 50px;
+  color: black;
+  font-size: 2em;
+  padding: 8px 30px;
+  margin: 50px auto; /* centré horizontalement avec marge en haut */
+}
+
+.player-card {
+  display: flex;
+  justify-content: space-between; /* espace entre texte gauche et cases droite */
+  align-items: center;
+  background: #f9f9f9;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+  border: 2px solid transparent;
+}
+
+.player-card:hover {
+  background: #ececec;
+}
+
+.player-card.selected {
+  border-color: #4caf50;
+  background: #e8f5e9;
+}
+
+.player-card.punished {
+  background: #ffebee;
+}
+
+/* Partie gauche : photo + texte */
+.player-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1; /* prend tout l'espace disponible */
+}
+
+.player-info div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* texte aligné à gauche */
+}
+
+.player-photo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+/* Surnom en italique */
+.player-nickname {
+  font-size: 0.75em;
+  color: #555;
+  font-style: italic;
+}
+
+/* Partie droite : cases côte à côte */
+.checkbox-group {
+  display: flex;
+  gap: 10px; /* espace entre Sélectionner et Puni */
+  flex-shrink: 0; /* ne rétrécit pas */
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9em;
+}
+
+/* Icône punis */
+.punish-icon {
+  color: #e53935;
+  margin-left: 2px;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .player-photo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .checkbox-group label {
+    font-size: 0.8em;
+  }
+}
+
+/* Equipes affichées */
+
+.teams-container {
+  display: flex;
+  flex-direction: column; /* une équipe par ligne */
+  gap: 20px; /* espace vertical entre équipes */
+  margin-top: 20px;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  background: #f0f0f0;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+}
+
+.team h3 {
+  flex: 1;
+  max-width: 25%;
+  margin: 0;
+  text-align: left;
+}
+
+.team-members {
+  flex: 3;
+  display: flex;
+  justify-content: center; /* centrage horizontal */
+  gap: 20px;
+  flex-wrap: wrap; /* optionnel : retour à la ligne si beaucoup de joueurs */
+}
+
+.team-player {
+  display: flex;
+  flex-direction: column; /* photo au-dessus du nom */
+  align-items: center;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.team-player.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.team-player img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+.team-player-name {
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.team-player.punished img {
+  border: 2px solid #e53935; /* indication punis */
+}
+
+#validateBtn {
+  background: #4caf50; /* vert simple et élégant */
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 10px 20px;
+  cursor: pointer;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#validateBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+}
+
+#validateBtn {
+  margin-top: 15px;
+  margin-bottom: 20px; /* espace pour séparer du début des équipes */
+}
+
+/* ===== MODE TOURNOIS ===== */
+.team.tournament {
+  align-items: center; /* centre verticalement tout le contenu du bandeau */
+}
+
+.team-title {
+  flex: 1;
+  max-width: 20%;
+  text-align: left;
+  display: flex;
+  align-items: center; /* centre verticalement le nom de l'équipe */
+  font-weight: 600;
+}
+
+.team-members {
+  flex: 2;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  align-items: center; /* centre verticalement les joueurs */
+}
+
+.team-loadout {
+  flex: 1;
+  max-width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  justify-content: center;
+  font-size: 0.1em;
+}
+
+.loadout-item {
+  display: flex; /* ligne horizontale : image + texte */
+  flex-direction: row;
+  align-items: flex-start; /* texte aligné en haut de l'image */
+  gap: 2px; /* espace entre image et texte */
+  margin-left: -10px; /* ou translateX */
+}
+
+.loadout-item img {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.loadout-item span {
+  display: block;
+}
