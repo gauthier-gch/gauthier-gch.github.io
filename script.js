@@ -732,6 +732,11 @@ const playersData = [
     photo: "https://i.imgur.com/U5I93d2.png"
   },
   {
+    name: "Romain",
+    nickname: "Après 0 y'a 1",
+    photo: "https://i.imgur.com/X5HvSz8.png"
+  },
+  {
     name: "Thomas",
     nickname: "Le briseur",
     photo:
