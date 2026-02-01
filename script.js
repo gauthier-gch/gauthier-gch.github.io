@@ -1,7 +1,7 @@
 if ("serviceWorker" in navigator) {
 navigator.serviceWorker.register("/sw.js");
 }
-const LOG_ENDPOINT = "https://script.google.com/macros/s/AKfycbzeIB9rggLPSWIBYS2-4aB9mcUET58DvTa-HEEfooPbUMU3eytjCg7ljCk8iNB5MPoE/exec";
+const LOG_ENDPOINT = "https://script.google.com/macros/s/AKfycbz02793zDg-bR4BQJQqNXfRgxlGd8HeUBPMYvN6X_GGtfeaUVSK53uuM63VWGTTSRT2Zw/exec";
 
 /***********************
  * DONNÉES MARIO KART *
