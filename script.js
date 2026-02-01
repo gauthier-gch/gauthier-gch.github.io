@@ -1,6 +1,8 @@
 if ("serviceWorker" in navigator) {
 navigator.serviceWorker.register("/sw.js");
 }
+const LOG_ENDPOINT = "https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbwJU3Z4KnSB1g5L-BdxwIY6Vt60oBnajV35A6QZK8Ys6eovZA9ehN07oX-y6sMmLDI5/exec/exec";
+
 /***********************
  * DONNÉES MARIO KART *
  ***********************/
@@ -927,3 +929,35 @@ document.getElementById("validateBtn").addEventListener("click", () => {
 
   displayTeamsWithSuspense(teams, isTournament);
 });
+
+
+function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
+  const payload = {
+    timestamp: new Date().toISOString(),
+    tournament: isTournament,
+    players: selectedPlayers.map(p => ({
+      name: p.name,
+      punished: p.punished
+    })),
+    teams: teams.map(team => ({
+      players: team.players.map(p => p.name),
+      punishedCount: team.players.filter(p => p.punished).length,
+      loadout: team.loadout
+        ? {
+            pilot: team.loadout.pilot?.name,
+            kart: team.loadout.kart?.name,
+            wheels: team.loadout.wheels?.name,
+            glider: team.loadout.glider?.name
+          }
+        : null
+    }))
+  };
+
+  fetch(LOG_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).catch(err => {
+    console.error("Erreur log Google Sheets", err);
+  });
+}
