@@ -1,7 +1,7 @@
 if ("serviceWorker" in navigator) {
 navigator.serviceWorker.register("/sw.js");
 }
-const LOG_ENDPOINT = "https://script.google.com/macros/s/AKfycbwSotxpq-xwTK0WCr7gk9suWV2GyKkwbeuu0OjR7VswAN4aKtDW1snNbsSmFPmLPJ379A/exec";
+const LOG_ENDPOINT = "https://script.google.com/macros/s/AKfycbzeIB9rggLPSWIBYS2-4aB9mcUET58DvTa-HEEfooPbUMU3eytjCg7ljCk8iNB5MPoE/exec";
 
 /***********************
  * DONNÉES MARIO KART *
@@ -893,9 +893,9 @@ function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
 
   fetch(LOG_ENDPOINT, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    mode: "no-cors",
     body: JSON.stringify(payload)
-  })
+  });
     .then(() => console.log("Log envoyé"))
     .catch(err => console.error("Erreur log Google Sheets", err));
 }
