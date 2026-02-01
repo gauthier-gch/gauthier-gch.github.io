@@ -891,14 +891,11 @@ function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
     }))
   };
 
-  fetch(LOG_ENDPOINT, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(payload)
-  });
-    .then(() => console.log("Log envoyé"))
-    .catch(err => console.error("Erreur log Google Sheets", err));
-}
+fetch(LOG_ENDPOINT, {
+  method: "POST",
+  mode: "no-cors",
+  body: JSON.stringify(payload)
+});
 
 
 /***********************
