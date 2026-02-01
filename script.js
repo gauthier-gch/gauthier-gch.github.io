@@ -826,6 +826,37 @@ function displayTeamsWithSuspense(teams, isTournament) {
     teamsDiv.appendChild(teamDiv);
   });
 
+function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
+  const payload = {
+    timestamp: new Date().toISOString(),
+    tournament: isTournament,
+    players: selectedPlayers.map(p => ({
+      name: p.name,
+      punished: p.punished
+    })),
+    teams: teams.map(team => ({
+      players: team.players.map(p => p.name),
+      punishedCount: team.players.filter(p => p.punished).length,
+      loadout: team.loadout
+        ? {
+            pilot: team.loadout.pilot?.name,
+            kart: team.loadout.kart?.name,
+            wheels: team.loadout.wheels?.name,
+            glider: team.loadout.glider?.name
+          }
+        : null
+    }))
+  };
+
+  fetch(LOG_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).catch(err => {
+    console.error("Erreur log Google Sheets", err);
+  });
+}
+
   let delay = 0;
 
   teams.forEach((team, teamIndex) => {
@@ -928,36 +959,9 @@ document.getElementById("validateBtn").addEventListener("click", () => {
   }
 
   displayTeamsWithSuspense(teams, isTournament);
+  logTeamsCreation({
+  isTournament,
+  selectedPlayers,
+  teams
 });
-
-
-function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
-  const payload = {
-    timestamp: new Date().toISOString(),
-    tournament: isTournament,
-    players: selectedPlayers.map(p => ({
-      name: p.name,
-      punished: p.punished
-    })),
-    teams: teams.map(team => ({
-      players: team.players.map(p => p.name),
-      punishedCount: team.players.filter(p => p.punished).length,
-      loadout: team.loadout
-        ? {
-            pilot: team.loadout.pilot?.name,
-            kart: team.loadout.kart?.name,
-            wheels: team.loadout.wheels?.name,
-            glider: team.loadout.glider?.name
-          }
-        : null
-    }))
-  };
-
-  fetch(LOG_ENDPOINT, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload)
-  }).catch(err => {
-    console.error("Erreur log Google Sheets", err);
-  });
-}
+});
