@@ -723,13 +723,13 @@ const playersData = [
       "https://i.imgur.com/ZMoOMfV_d.png?maxwidth=520&shape=thumb&fidelity=high"
   },
   {
-    name: "Quentin",
+    name: "Quentin D",
     nickname: "Tic",
     photo:
       "https://i.imgur.com/VmuolTs_d.png?maxwidth=520&shape=thumb&fidelity=high"
   },
   {
-    name: "Quentin",
+    name: "Quentin H",
     nickname: "Tac",
     photo: "https://i.imgur.com/U5I93d2.png"
   },
