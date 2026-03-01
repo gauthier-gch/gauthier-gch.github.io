@@ -891,7 +891,7 @@ function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
     }))
   };
 
-  // Envoi au Web App
+  // Envoi au google sheet
   fetch(LOG_ENDPOINT, {
     method: "POST",
     body: JSON.stringify(payload),
@@ -900,6 +900,17 @@ function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
   .then(res => res.json())
   .then(data => console.log("Log envoyé:", data))
   .catch(err => console.error("Erreur log Google Sheets", err));
+
+  //Envoi au Webhook Zapier
+  const WEBHOOK_URL = "https://hooks.zapier.com/hooks/catch/23398267/u08m3vy/"; // 
+  
+  fetch(WEBHOOK_URL, {
+    method: "POST",
+    body: JSON.stringify(payload),
+    headers: { "Content-Type": "application/json" } // Ici on remet du vrai JSON !
+  })
+  .then(() => console.log("Log Webhook envoyé instantanément !"))
+  .catch(err => console.error("Erreur log Webhook", err));
 }
 
 /***********************
