@@ -895,7 +895,7 @@ function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
   fetch(LOG_ENDPOINT, {
     method: "POST",
     body: JSON.stringify(payload),
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "text/plain;charset=utf-8" }
   })
   .then(res => res.json())
   .then(data => console.log("Log envoyé:", data))
