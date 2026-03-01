@@ -907,7 +907,7 @@ function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
   fetch(WEBHOOK_URL, {
     method: "POST",
     body: JSON.stringify(payload),
-    headers: { "Content-Type": "application/json" } // Ici on remet du vrai JSON !
+    headers: { "Content-Type": "text/plain;charset=utf-8" } // 
   })
   .then(() => console.log("Log Webhook envoyé instantanément !"))
   .catch(err => console.error("Erreur log Webhook", err));
