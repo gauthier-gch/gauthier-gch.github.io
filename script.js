@@ -672,7 +672,7 @@ const playersData = [
   },
   {
     name: "Edouard",
-    nickname: "Tenant du titre 🏆",
+    nickname: "Edouard Chance",
     photo:
       "https://i.imgur.com/oI8066m_d.png?maxwidth=520&shape=thumb&fidelity=high"
   },
