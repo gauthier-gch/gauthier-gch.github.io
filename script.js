@@ -720,7 +720,7 @@ const playersData = [
     name: "Polem",
     nickname: "In a bowl",
     photo:
-      "https://i.imgur.com/ZMoOMfV_d.png?maxwidth=520&shape=thumb&fidelity=high"
+      "https://i.imgur.com/Gg4cj7D.png"
   },
   {
     name: "Quentin D",
