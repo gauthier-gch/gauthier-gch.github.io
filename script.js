@@ -690,7 +690,7 @@ const playersData = [
   },
   {
     name: "Loric",
-    nickname: "Ça crunch",
+    nickname: "Coloric et Loricocu",
     photo:
       "https://i.imgur.com/c7ZLbDt_d.png?maxwidth=520&shape=thumb&fidelity=high"
   },
@@ -713,12 +713,12 @@ const playersData = [
   },
   {
     name: "Noé",
-    nickname: "Futur champion",
+    nickname: "#N/A",
     photo: "https://i.imgur.com/NLJhQ2l.png"
   },
   {
     name: "Polem",
-    nickname: "Le COUB",
+    nickname: "In a bowl",
     photo:
       "https://i.imgur.com/ZMoOMfV_d.png?maxwidth=520&shape=thumb&fidelity=high"
   },
