@@ -697,22 +697,33 @@ function shuffle(array) {
 }
 
 /***********************
+ * DATE DU JOUR (Format MM-DD)
+ ***********************/
+const today = new Date();
+const todayStr = String(today.getMonth() + 1).padStart(2, '0') + '-' + String(today.getDate()).padStart(2, '0');
+
+/***********************
  * CARTES JOUEURS
  ***********************/
 playersData.forEach((player, index) => {
+  const isBirthdayToday = (player.anniversaire === todayStr || player.simoneversaire === todayStr);
+  const displayName = isBirthdayToday ? `${player.name} 🎂` : player.name;
+
   const card = document.createElement("div");
-  card.className = "player-card";
+  // On ajoute la classe 'birthday-card' si c'est son anniversaire
+  card.className = "player-card" + (isBirthdayToday ? " birthday-card" : "");
+  
   card.innerHTML = `
     <div class="player-info">
       <img src="${player.photo}" class="player-photo">
       <div>
-        <div>${player.name}</div>
+        <div>${displayName}</div>
         <div class="player-nickname"><em>${player.nickname}</em></div>
       </div>
     </div>
     <div class="checkbox-group">
-      <label><input type="checkbox" class="select-player" data-index="${index}"> Sélectionné</label>
-      <label>
+      <label class="select-label"><input type="checkbox" class="select-player" data-index="${index}"> Sélectionné</label>
+      <label class="punish-label">
         <input type="checkbox" class="punish-player" data-index="${index}"> Puni
         <span class="punish-icon">👹</span>
       </label>
@@ -720,13 +731,24 @@ playersData.forEach((player, index) => {
   `;
   playersCards.appendChild(card);
 
+  // Gestion du clic sur la carte
   card.addEventListener("click", (e) => {
-    if (e.target.tagName === "INPUT") return;
+    // Si on clique sur la zone "Puni", on ne fait rien pour la sélection
+    if (e.target.closest('.punish-label')) return;
+
     const checkbox = card.querySelector(".select-player");
-    checkbox.checked = !checkbox.checked;
+    
+    // Si on n'a pas cliqué directement sur la checkbox, on bloque l'action du label 
+    // et on inverse nous-mêmes pour éviter le double-déclenchement
+    if (e.target !== checkbox) {
+      e.preventDefault();
+      checkbox.checked = !checkbox.checked;
+    }
+    
     card.classList.toggle("selected", checkbox.checked);
   });
 
+  // La case puni
   const punishCheckbox = card.querySelector(".punish-player");
   punishCheckbox.addEventListener("change", () => {
     card.classList.toggle("punished", punishCheckbox.checked);
@@ -761,11 +783,17 @@ function displayTeamsWithSuspense(teams, isTournament) {
     team.players.forEach((player) => {
       const playerDiv = document.createElement("div");
       playerDiv.className = "team-player";
-      if (player.punished) playerDiv.classList.add("punished");
+      
+      // Si puni -> contour rouge. Sinon, si anniversaire -> contour vert.
+      if (player.punished) {
+        playerDiv.classList.add("punished");
+      } else if (player.isBirthday) {
+        playerDiv.classList.add("blessed");
+      }
 
       playerDiv.innerHTML = `
         <img src="${player.photo}">
-        <div class="team-player-name">${player.name}</div>
+        <div class="team-player-name">${player.displayName || player.name}</div>
       `;
 
       membersContainer.appendChild(playerDiv);
@@ -849,13 +877,15 @@ document.getElementById("validateBtn").addEventListener("click", () => {
   document.querySelectorAll(".select-player").forEach((checkbox) => {
     if (checkbox.checked) {
       const index = checkbox.dataset.index;
-      const punished = document.querySelector(
-        `.punish-player[data-index="${index}"]`
-      ).checked;
+      const punished = document.querySelector(`.punish-player[data-index="${index}"]`).checked;
+      const player = playersData[index];
+      const isBirthday = (player.anniversaire === todayStr || player.simoneversaire === todayStr);
 
       selectedPlayers.push({
-        ...playersData[index],
-        punished
+        ...player,
+        punished,
+        isBirthday,
+        displayName: isBirthday ? `${player.name} 🎂` : player.name
       });
     }
   });
@@ -864,11 +894,17 @@ document.getElementById("validateBtn").addEventListener("click", () => {
     alert("Sélectionne au moins un joueur");
     return;
   }
-
+  
+  // 1. On mélange d'abord tous les joueurs sélectionnés de manière aléatoire
   shuffle(selectedPlayers);
 
-  const punishedPlayers = selectedPlayers.filter((p) => p.punished);
-  const normalPlayers = selectedPlayers.filter((p) => !p.punished);
+  // 2. On les trie selon la règle : Punis (D'abord) -> Normaux (Milieu) -> Anniversaires non punis (En dernier)
+  // Si un joueur est puni ET que c'est son anniversaire, la punition prime !
+  const sortedPlayers = [
+    ...selectedPlayers.filter(p => p.punished), // Tous les punis (anniversaires inclus)
+    ...selectedPlayers.filter(p => !p.punished && !p.isBirthday), // Les normaux
+    ...selectedPlayers.filter(p => !p.punished && p.isBirthday) // Les anniversaires (qui ne sont pas punis)
+  ];
 
   const numTeams = 4;
   const teams = Array.from({ length: numTeams }, () => ({
@@ -879,31 +915,24 @@ document.getElementById("validateBtn").addEventListener("click", () => {
   const totalPlayers = selectedPlayers.length;
   const baseSize = Math.floor(totalPlayers / numTeams);
   const extra = totalPlayers % numTeams;
+  
+  // Calcul du nombre de places pour chaque équipe
   const teamSizes = Array(numTeams)
     .fill(baseSize)
     .map((s, i) => (i < extra ? s + 1 : s));
 
-  let p = 0;
+  // 3. Distribution en remplissant les équipes avec notre liste triée
+  let queueIndex = 0;
   for (let i = 0; i < numTeams; i++) {
-    while (
-      teams[i].players.length < teamSizes[i] &&
-      p < punishedPlayers.length
-    ) {
-      teams[i].players.push(punishedPlayers[p++]);
-    }
-  }
-
-  let n = 0;
-  for (let i = 0; i < numTeams; i++) {
-    while (teams[i].players.length < teamSizes[i] && n < normalPlayers.length) {
-      teams[i].players.push(normalPlayers[n++]);
+    while (teams[i].players.length < teamSizes[i] && queueIndex < sortedPlayers.length) {
+      teams[i].players.push(sortedPlayers[queueIndex++]);
     }
   }
 
   displayTeamsWithSuspense(teams, isTournament);
   logTeamsCreation({
-  isTournament,
-  selectedPlayers,
-  teams
-});
+    isTournament,
+    selectedPlayers,
+    teams
+  });
 });
