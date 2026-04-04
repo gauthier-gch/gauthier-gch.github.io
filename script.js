@@ -697,6 +697,28 @@ function shuffle(array) {
 }
 
 /***********************
+ * GESTION DE L'AUDIO 🎵
+ ***********************/
+const sounds = {
+  theme: new Audio('./sounds/theme.mp3'),
+  yoshi: new Audio('./sounds/yoshi.mp3'),
+  bowser: new Audio('./sounds/bowser.mp3'),
+  suspense: new Audio('./sounds/suspense.mp3')
+};
+
+// Réglages du thème principal
+sounds.theme.loop = true; // Tourne en boucle
+sounds.theme.volume = 0.2; // On baisse un peu le volume pour entendre les autres bruitages
+
+// Le navigateur bloque le son tant qu'il n'y a pas d'interaction.
+// On lance la musique au premier clic sur la page.
+document.addEventListener('click', () => {
+  if (sounds.theme.paused) {
+    sounds.theme.play().catch(e => console.log("En attente d'interaction utilisateur..."));
+  }
+}, { once: true }); // Le { once: true } détruit cet écouteur après le premier clic !
+
+/***********************
  * DATE DU JOUR (Format MM-DD)
  ***********************/
 const today = new Date();
@@ -733,16 +755,21 @@ playersData.forEach((player, index) => {
 
   // Gestion du clic sur la carte
   card.addEventListener("click", (e) => {
-    // Si on clique sur la zone "Puni", on ne fait rien pour la sélection
+    // On ignore le clic si c'est sur la zone "Puni"
     if (e.target.closest('.punish-label')) return;
 
     const checkbox = card.querySelector(".select-player");
     
-    // Si on n'a pas cliqué directement sur la checkbox, on bloque l'action du label 
-    // et on inverse nous-mêmes pour éviter le double-déclenchement
+    // Si on clique ailleurs que sur la checkbox elle-même, on gère la sélection
     if (e.target !== checkbox) {
       e.preventDefault();
       checkbox.checked = !checkbox.checked;
+    }
+    
+    // AUDIO : On joue Yoshi UNIQUEMENT si le joueur est sélectionné (coché)
+    if (checkbox.checked) {
+      sounds.yoshi.currentTime = 0; // Remet au début si on clique vite
+      sounds.yoshi.play();
     }
     
     card.classList.toggle("selected", checkbox.checked);
@@ -752,9 +779,13 @@ playersData.forEach((player, index) => {
   const punishCheckbox = card.querySelector(".punish-player");
   punishCheckbox.addEventListener("change", () => {
     card.classList.toggle("punished", punishCheckbox.checked);
+    
+    // AUDIO : On joue Bowser UNIQUEMENT si le joueur est puni (coché)
+    if (punishCheckbox.checked) {
+      sounds.bowser.currentTime = 0;
+      sounds.bowser.play();
+    }
   });
-});
-
 /***********************
  * AFFICHAGE ÉQUIPES
  ***********************/
@@ -774,7 +805,15 @@ function displayTeamsWithSuspense(teams, isTournament) {
     teamsDiv.appendChild(teamDiv);
   });
 
-  let delay = 0;
+  // Calcul dynamique pour synchroniser avec les 4 secondes de suspense
+  let totalPlayersCount = 0;
+  teams.forEach(t => totalPlayersCount += t.players.length);
+  
+  // On veut que le dernier joueur apparaisse à 3.8s (3800ms) 
+  const targetEndTime = 3800; 
+  // On divise ce temps par le nombre d'intervalles (nombre de joueurs - 1)
+  const delayStep = totalPlayersCount > 1 ? targetEndTime / (totalPlayersCount - 1) : 0;
+  let currentDelay = 0;
 
   teams.forEach((team, teamIndex) => {
     const teamDiv = teamsDiv.children[teamIndex];
@@ -784,7 +823,6 @@ function displayTeamsWithSuspense(teams, isTournament) {
       const playerDiv = document.createElement("div");
       playerDiv.className = "team-player";
       
-      // Si puni -> contour rouge. Sinon, si anniversaire -> contour vert.
       if (player.punished) {
         playerDiv.classList.add("punished");
       } else if (player.isBirthday) {
@@ -797,9 +835,13 @@ function displayTeamsWithSuspense(teams, isTournament) {
       `;
 
       membersContainer.appendChild(playerDiv);
-      setTimeout(() => playerDiv.classList.add("visible"), delay);
-      delay += 1000;
+      
+      // On utilise le délai dynamique
+      setTimeout(() => playerDiv.classList.add("visible"), currentDelay);
+      currentDelay += delayStep;
     });
+
+    // ... (Le code du loadout tournois reste inchangé ici) ...
 
     // 🎮 Loadout équipe (mode tournois)
     if (isTournament) {
@@ -900,6 +942,14 @@ document.getElementById("validateBtn").addEventListener("click", () => {
     alert("Sélectionne au moins un joueur");
     return;
   }
+
+  // GESTION MUSIQUE DU TIRAGE
+  sounds.bgm.pause(); // On coupe la musique de fond
+  sounds.suspense.currentTime = 0;
+  sounds.suspense.play(); // On lance la musique de la roulette
+
+  // 1. On mélange d'abord tous les joueurs sélectionnés...
+  // ... (le reste de ton code reste exactement pareil)
   
   // 1. On mélange d'abord tous les joueurs sélectionnés de manière aléatoire
   shuffle(selectedPlayers);
