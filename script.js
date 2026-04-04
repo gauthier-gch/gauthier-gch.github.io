@@ -829,10 +829,16 @@ function logTeamsCreation({ isTournament, selectedPlayers, teams }) {
     tournament: isTournament,
     players: selectedPlayers.map(p => ({
       name: p.name,
-      punished: p.punished
+      punished: p.punished,
+      isBirthday: p.isBirthday // Ajout de l'info anniversaire globale
     })),
     teams: teams.map(team => ({
-      players: team.players.map(p => p.name),
+      // Envoi d'un objet complet pour chaque joueur de l'équipe
+      players: team.players.map(p => ({
+        name: p.name,
+        punished: p.punished,
+        isBirthday: p.isBirthday
+      })),
       punishedCount: team.players.filter(p => p.punished).length,
       loadout: team.loadout
         ? {
