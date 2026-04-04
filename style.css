@@ -244,3 +244,40 @@ h1 {
 .loadout-item span {
   display: block;
 }
+
+/* Contour vert pour les joueurs bénis (anniversaire) dans les équipes */
+.team-player.blessed img {
+  border: 2px solid #4caf50;
+}
+
+/* Effet brillant argenté pour les cartes d'anniversaire */
+.player-card.birthday-card {
+  position: relative;
+  overflow: hidden;
+  border-color: #b0b0b0; /* Contour argenté */
+  box-shadow: 0 0 8px rgba(176, 176, 176, 0.5); /* Ombre grise/argentée */
+}
+
+/* La bande lumineuse animée (éclat blanc/argenté) */
+.player-card.birthday-card::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 3s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
+}
