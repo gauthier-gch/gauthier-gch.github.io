@@ -700,10 +700,10 @@ function shuffle(array) {
  * GESTION DE L'AUDIO 🎵
  ***********************/
 const sounds = {
-  theme: new Audio('./theme.mp3'),
-  yoshi: new Audio('./yoshi.mp3'),
-  bowser: new Audio('./bowser.mp3'),
-  suspense: new Audio('./suspense.mp3')
+  theme: new Audio('./sound_theme.mp3'),
+  yoshi: new Audio('./sound_yoshi.mp3'),
+  bowser: new Audio('./sound_bowser.mp3'),
+  suspense: new Audio('./sound_suspense.mp3')
 };
 
 // Réglages du thème principal
