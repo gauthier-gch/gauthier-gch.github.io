@@ -662,99 +662,25 @@ function generateTeamLoadout() {
 }
 
 /***********************
- * JOUEURS (INCHANGÉ)
+ * JOUEURS
  ***********************/
-const playersData = [
-  {
-    name: "Clément",
-    nickname: "TripleK",
-    photo: "https://i.imgur.com/2BDmNxc.png"
-  },
-  {
-    name: "Edouard",
-    nickname: "Edouard Chance",
-    photo:
-      "https://i.imgur.com/oI8066m_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Gauthier",
-    nickname: "Boss Ladyyy",
-    photo:
-      "https://i.imgur.com/IvyDEfG_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Julien",
-    nickname: "Candymaaan",
-    photo:
-      "https://i.imgur.com/gogAMx3_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Loric",
-    nickname: "Coloric et Loricocu",
-    photo:
-      "https://i.imgur.com/c7ZLbDt_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Manon",
-    nickname: "Au mérite",
-    photo: "https://i.imgur.com/RKUhEge.png"
-  },
-  {
-    name: "Mathieu",
-    nickname: "Ça jute",
-    photo:
-      "https://i.imgur.com/aFNU5Cm_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Nico",
-    nickname: "LE 1 N'A RIEN",
-    photo:
-      "https://i.imgur.com/172Tyj2_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Noé",
-    nickname: "#N/A",
-    photo: "https://i.imgur.com/NLJhQ2l.png"
-  },
-  {
-    name: "Polem",
-    nickname: "In a bowl",
-    photo:
-      "https://i.imgur.com/Gg4cj7D.png"
-  },
-  {
-    name: "Quentin D",
-    nickname: "Tic",
-    photo:
-      "https://i.imgur.com/VmuolTs_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Quentin H",
-    nickname: "Tac",
-    photo: "https://i.imgur.com/U5I93d2.png"
-  },
-  {
-    name: "Romain",
-    nickname: "Après 0 y'a 1",
-    photo: "https://i.imgur.com/X5HvSz8.png"
-  },
-  {
-    name: "Thomas",
-    nickname: "Le briseur",
-    photo:
-      "https://i.imgur.com/JV95xh3_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Victoria",
-    nickname: "Dans la fifounette",
-    photo:
-      "https://i.imgur.com/5o4mY7x_d.png?maxwidth=520&shape=thumb&fidelity=high"
-  },
-  {
-    name: "Invité mystère",
-    nickname: "Surprise !",
-    photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg"
-  }
+const playersData = [ /*dates au format MM-DD*/
+  { name: "Clément", nickname: "TripleK", photo: "https://i.imgur.com/2BDmNxc.png", anniversaire: "12-23", simoneversaire: "07-01" },
+  { name: "Edouard", nickname: "Edouard Chance", photo: "https://i.imgur.com/oI8066m_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "01-01", simoneversaire: "01-01" },
+  { name: "Gauthier", nickname: "Boss Ladyyy", photo: "https://i.imgur.com/IvyDEfG_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "05-15", simoneversaire: "04-01" },
+  { name: "Julien", nickname: "Candymaaan", photo: "https://i.imgur.com/gogAMx3_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "03-07", simoneversaire: "02-04" },
+  { name: "Loric", nickname: "Coloric et Loricocu", photo: "https://i.imgur.com/c7ZLbDt_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "12-09", simoneversaire: "04-22" },
+  { name: "Manon", nickname: "Au mérite", photo: "https://i.imgur.com/RKUhEge.png", anniversaire: "08-13", simoneversaire: "01-01" },
+  { name: "Mathieu", nickname: "Ça jute", photo: "https://i.imgur.com/aFNU5Cm_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "04-23", simoneversaire: "02-01" },
+  { name: "Nico", nickname: "LE 1 N'A RIEN", photo: "https://i.imgur.com/172Tyj2_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "05-16", simoneversaire: "03-20" },
+  { name: "Noé", nickname: "#N/A", photo: "https://i.imgur.com/NLJhQ2l.png", anniversaire: "01-01", simoneversaire: "01-05" },
+  { name: "Polem", nickname: "In a bowl", photo: "https://i.imgur.com/Gg4cj7D.png", anniversaire: "06-12", simoneversaire: "12-11" },
+  { name: "Quentin D", nickname: "Tic", photo: "https://i.imgur.com/VmuolTs_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "01-01", simoneversaire: "04-01" },
+  { name: "Quentin H", nickname: "Tac", photo: "https://i.imgur.com/U5I93d2.png", anniversaire: "04-17", simoneversaire: "02-19" },
+  { name: "Romain", nickname: "Après 0 y'a 1", photo: "https://i.imgur.com/X5HvSz8.png", anniversaire: "01-01", simoneversaire: "01-26" },
+  { name: "Thomas", nickname: "Le briseur", photo: "https://i.imgur.com/JV95xh3_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "02-26", simoneversaire: "07-24" },
+  { name: "Victoria", nickname: "Dans la fifounette", photo: "https://i.imgur.com/5o4mY7x_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "03-29", simoneversaire: "06-01" },
+  { name: "Invité mystère", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" }
 ];
 
 const playersCards = document.getElementById("players-cards");
