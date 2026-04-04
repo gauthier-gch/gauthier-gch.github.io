@@ -201,7 +201,11 @@ const sounds = {
 
 // Réglages du thème principal
 sounds.theme.loop = true; 
-sounds.theme.volume = 0.2; 
+sounds.theme.volume = 0.15; 
+
+// Réglages des bruitages
+sounds.yoshi.volume = 1.0;
+sounds.bowser.volume = 0.5;
 
 // On lance la musique au premier clic sur la page
 document.addEventListener('click', () => {
