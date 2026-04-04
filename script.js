@@ -785,6 +785,12 @@ playersData.forEach((player, index) => {
       sounds.bowser.play();
     }
   });
+});
+
+/***********************
+ * AFFICHAGE ÉQUIPES
+ ***********************/
+function displayTeamsWithSuspense(teams, isTournament) {
 /***********************
  * AFFICHAGE ÉQUIPES
  ***********************/
