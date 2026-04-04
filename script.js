@@ -700,23 +700,22 @@ function shuffle(array) {
  * GESTION DE L'AUDIO 🎵
  ***********************/
 const sounds = {
-  theme: new Audio('./sounds/theme.mp3'),
-  yoshi: new Audio('./sounds/yoshi.mp3'),
-  bowser: new Audio('./sounds/bowser.mp3'),
-  suspense: new Audio('./sounds/suspense.mp3')
+  theme: new Audio('./theme.mp3'),
+  yoshi: new Audio('./yoshi.mp3'),
+  bowser: new Audio('./bowser.mp3'),
+  suspense: new Audio('./suspense.mp3')
 };
 
 // Réglages du thème principal
-sounds.theme.loop = true; // Tourne en boucle
-sounds.theme.volume = 0.2; // On baisse un peu le volume pour entendre les autres bruitages
+sounds.theme.loop = true; 
+sounds.theme.volume = 0.2; 
 
-// Le navigateur bloque le son tant qu'il n'y a pas d'interaction.
-// On lance la musique au premier clic sur la page.
+// On lance la musique au premier clic sur la page
 document.addEventListener('click', () => {
   if (sounds.theme.paused) {
     sounds.theme.play().catch(e => console.log("En attente d'interaction utilisateur..."));
   }
-}, { once: true }); // Le { once: true } détruit cet écouteur après le premier clic !
+}, { once: true });
 
 /***********************
  * DATE DU JOUR (Format MM-DD)
