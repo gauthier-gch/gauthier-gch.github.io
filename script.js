@@ -665,9 +665,9 @@ function generateTeamLoadout() {
  * JOUEURS
  ***********************/
 const playersData = [ /*dates au format MM-DD*/
-  { name: "Clément", nickname: "TripleK", photo: "https://i.imgur.com/2BDmNxc.png", anniversaire: "12-23", simoneversaire: "04-04" },
+  { name: "Clément", nickname: "TripleK", photo: "https://i.imgur.com/2BDmNxc.png", anniversaire: "12-23", simoneversaire: "07-01" },
   { name: "Edouard", nickname: "Edouard Chance", photo: "https://i.imgur.com/oI8066m_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "01-01", simoneversaire: "01-01" },
-  { name: "Gauthier", nickname: "Boss Ladyyy", photo: "https://i.imgur.com/IvyDEfG_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "04-04", simoneversaire: "04-01" },
+  { name: "Gauthier", nickname: "Boss Ladyyy", photo: "https://i.imgur.com/IvyDEfG_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "05-15", simoneversaire: "04-01" },
   { name: "Julien", nickname: "Candymaaan", photo: "https://i.imgur.com/gogAMx3_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "03-07", simoneversaire: "02-04" },
   { name: "Loric", nickname: "Coloric et Loricocu", photo: "https://i.imgur.com/c7ZLbDt_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "12-09", simoneversaire: "04-22" },
   { name: "Manon", nickname: "Au mérite", photo: "https://i.imgur.com/RKUhEge.png", anniversaire: "08-13", simoneversaire: "01-01" },
