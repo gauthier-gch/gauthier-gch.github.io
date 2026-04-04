@@ -943,14 +943,10 @@ document.getElementById("validateBtn").addEventListener("click", () => {
     return;
   }
 
-  // GESTION MUSIQUE DU TIRAGE
-  sounds.bgm.pause(); // On coupe la musique de fond
+  // AUDIO : On lance la musique du tirage des équipes !
   sounds.suspense.currentTime = 0;
-  sounds.suspense.play(); // On lance la musique de la roulette
+  sounds.suspense.play();
 
-  // 1. On mélange d'abord tous les joueurs sélectionnés...
-  // ... (le reste de ton code reste exactement pareil)
-  
   // 1. On mélange d'abord tous les joueurs sélectionnés de manière aléatoire
   shuffle(selectedPlayers);
 
