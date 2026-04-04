@@ -787,11 +787,7 @@ playersData.forEach((player, index) => {
   });
 });
 
-/***********************
- * AFFICHAGE ÉQUIPES
- ***********************/
-function displayTeamsWithSuspense(teams, isTournament) {
-/***********************
+
  * AFFICHAGE ÉQUIPES
  ***********************/
 function displayTeamsWithSuspense(teams, isTournament) {
