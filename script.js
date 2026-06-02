@@ -173,6 +173,8 @@ const playersData = [
   { name: "Romain", nickname: "Après 0 y'a 1", photo: "https://i.imgur.com/X5HvSz8.png", anniversaire: "08-23", simoneversaire: "01-26" },
   { name: "Thomas", nickname: "Le briseur", photo: "https://i.imgur.com/JV95xh3_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "02-26", simoneversaire: "07-24" },
   { name: "Victoria", nickname: "Dans la fifounette", photo: "https://i.imgur.com/5o4mY7x_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "03-29", simoneversaire: "06-01" },
+  { name: "Invité mystère", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" },
+  { name: "Invité mystère", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" },
   { name: "Invité mystère", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" }
 ];
 
