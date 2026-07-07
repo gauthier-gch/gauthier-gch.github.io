@@ -168,15 +168,16 @@ const playersData = [
   { name: "Max", nickname: "Petite fleur prête à séduire les abeilles", photo: "https://i.imgur.com/mU8Loc3.png", anniversaire: "07-26", simoneversaire: "11-01" },
   { name: "Nico", nickname: "LE 1 N'A RIEN", photo: "https://i.imgur.com/172Tyj2_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "05-16", simoneversaire: "03-20" },
   { name: "Noé", nickname: "#N/A", photo: "https://i.imgur.com/NLJhQ2l.png", anniversaire: "09-30", simoneversaire: "01-05" },
+  { name: "Olivia", nickname: "Yoshi Jaune", photo: "https://i.imgur.com/0BGuYNT.png", anniversaire: "03-11", simoneversaire: "07-01" },
   { name: "Polem", nickname: "In a bowl", photo: "https://i.imgur.com/Gg4cj7D.png", anniversaire: "06-12", simoneversaire: "12-11" },
   { name: "Quentin D", nickname: "Tic", photo: "https://i.imgur.com/VmuolTs_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "05-10", simoneversaire: "04-01" },
   { name: "Quentin H", nickname: "Tac", photo: "https://i.imgur.com/U5I93d2.png", anniversaire: "04-17", simoneversaire: "02-19" },
   { name: "Romain", nickname: "Après 0 y'a 1", photo: "https://i.imgur.com/X5HvSz8.png", anniversaire: "08-23", simoneversaire: "01-26" },
   { name: "Thomas", nickname: "Le briseur", photo: "https://i.imgur.com/JV95xh3_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "02-26", simoneversaire: "07-24" },
   { name: "Victoria", nickname: "Dans la fifounette", photo: "https://i.imgur.com/5o4mY7x_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "03-29", simoneversaire: "06-01" },
-  { name: "Invité mystère", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" },
-  { name: "Invité mystère", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" },
-  { name: "Invité mystère", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" }
+  { name: "Invité mystère 1", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" },
+  { name: "Invité mystère 2", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" },
+  { name: "Invité mystère 3", nickname: "Surprise !", photo: "https://pbs.twimg.com/media/E0tq3dPXoAIIbU7.jpg", anniversaire: "01-01", simoneversaire: "01-01" }
 ];
 
 const playersCards = document.getElementById("players-cards");
