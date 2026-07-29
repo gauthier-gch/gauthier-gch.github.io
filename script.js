@@ -166,6 +166,7 @@ const playersData = [
   { name: "Manon", nickname: "Au mérite", photo: "https://i.imgur.com/RKUhEge.png", anniversaire: "08-13", simoneversaire: "02-01" },
   { name: "Mathieu", nickname: "Ça jute", photo: "https://i.imgur.com/aFNU5Cm_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "04-23", simoneversaire: "02-01" },
   { name: "Max", nickname: "Petite fleur prête à séduire les abeilles", photo: "https://i.imgur.com/mU8Loc3.png", anniversaire: "07-26", simoneversaire: "11-01" },
+  { name: "Maxime", nickname: "Juste un mini godet", photo: "https://i.imgur.com/JbfAQUh.png", anniversaire: "05-11", simoneversaire: "08-19" },
   { name: "Nico", nickname: "LE 1 N'A RIEN", photo: "https://i.imgur.com/172Tyj2_d.png?maxwidth=520&shape=thumb&fidelity=high", anniversaire: "05-16", simoneversaire: "03-20" },
   { name: "Noé", nickname: "#N/A", photo: "https://i.imgur.com/NLJhQ2l.png", anniversaire: "09-30", simoneversaire: "01-05" },
   { name: "Olivia", nickname: "Yoshi Jaune", photo: "https://i.imgur.com/0BGuYNT.png", anniversaire: "03-11", simoneversaire: "07-01" },
